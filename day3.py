@@ -9,14 +9,22 @@ def main():
     with open(sys.argv[1]) as inputfile:
         inputString = inputfile.read()
 
-    multiplicationSum = evaluateString(inputString, mulPattern, (enableString, disableString))
+    multiplicationSumWithoutConditionals = evaluateStringWithoutConditionals(inputString, mulPattern)
+    multiplicationSumWithConditionals    = evaluateStringWithConditionals(inputString, mulPattern, enableString, disableString)
 
-    # TODO: Restore part 1 solution calculation
-    print(f"Sum of all multiplication instructions: {multiplicationSum}")
+    print(f"Sum of all multiplication instructions ignoring conditionals: {multiplicationSumWithoutConditionals}")
+    print(f"Sum of all multiplication instructions with conditionals:     {multiplicationSumWithConditionals}")
 
-def evaluateString(input, mulPattern, enableAndDisableStr):
-    enableStr, disableStr = enableAndDisableStr
+def evaluateStringWithoutConditionals(input, mulPattern):
+    expressionList = re.findall(mulPattern, input)
 
+    multiplicationSum = 0
+    for expression in expressionList:
+        multiplicationSum += evaluateMulExpression(expression)
+
+    return multiplicationSum
+
+def evaluateStringWithConditionals(input, mulPattern, enableStr, disableStr):
     patternList = [mulPattern, re.escape(enableStr), re.escape(disableStr)]
     combinedPattern = "|".join(patternList)
 
