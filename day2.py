@@ -12,17 +12,25 @@ def main():
 
             reportList.append(report)
 
-    safeCounter = 0
+    safeWithoutDampenerCounter = 0
     for report in reportList:
-        if isSafe(report):
-            safeCounter += 1
+        if isSafe(report, withDampener=False):
+            safeWithoutDampenerCounter += 1
 
-    print(f"Number of safe reports: {safeCounter}")
+    print(f"Number of safe reports without dampener: {safeWithoutDampenerCounter}")
 
-def isSafe(report):
-    differences = getDifferences(report)
+def isSafe(report, withDampener=False):
+    if withDampener:
+        reportsWithOneEntryMissing = [
+            report[:i] + report[i+1:] for i in range(len(report))
+        ]
+        return any(
+            isSafe(r, withDampener=False) for r in reportsWithOneEntryMissing
+        )
+    else:
+        differences = getDifferences(report)
 
-    return (differencesHaveTheRightSize(differences) and differencesHaveTheSameSign(differences))
+        return (differencesHaveTheRightSize(differences) and differencesHaveTheSameSign(differences))
 
 def getDifferences(report):
     differences = []
@@ -35,7 +43,7 @@ def differencesHaveTheRightSize(differences):
     for diff in differences:
         if (abs(diff) > 3) or (abs(diff) < 1):
             return False
-    
+
     return True
 
 def differencesHaveTheSameSign(differences):
