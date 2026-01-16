@@ -42,4 +42,5 @@ def differencesHaveTheSameSign(differences):
     signs = [ -1 if diff < 0 else 1 for diff in differences ]
     return (abs(sum(signs)) == len(differences))
 
-main()
+if __name__ == "__main__":
+    main()
