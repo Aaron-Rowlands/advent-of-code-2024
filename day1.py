@@ -1,8 +1,9 @@
+import sys
+
 def main():
     leftList = []
     rightList = []
-    # TODO: duplicated in day2.py
-    with open("input.tmp") as inputfile:
+    with open(sys.argv[1]) as inputfile:
         for line in inputfile:
            leftNumberStr, rightNumberStr = line.strip().split("   ")
            leftList.append(int(leftNumberStr))

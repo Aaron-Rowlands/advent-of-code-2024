@@ -1,10 +1,11 @@
+import sys
+
 def main():
     reportList = []
-    # TODO: duplicated in day1.py
-    with open("input.tmp") as inputfile:
+    with open(sys.argv[1]) as inputfile:
         for line in inputfile:
             numberStrings = line.strip().split(" ")
-            
+
             report = []
             for numberStr in numberStrings:
                 report.append(int(numberStr))
