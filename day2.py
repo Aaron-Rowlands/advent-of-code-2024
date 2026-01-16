@@ -13,11 +13,15 @@ def main():
             reportList.append(report)
 
     safeWithoutDampenerCounter = 0
+    safeWithDampenerCounter    = 0
     for report in reportList:
         if isSafe(report, withDampener=False):
             safeWithoutDampenerCounter += 1
+        if isSafe(report, withDampener=True):
+            safeWithDampenerCounter    += 1
 
     print(f"Number of safe reports without dampener: {safeWithoutDampenerCounter}")
+    print(f"Number of safe reports with dampener:    {safeWithDampenerCounter}")
 
 def isSafe(report, withDampener=False):
     if withDampener:
