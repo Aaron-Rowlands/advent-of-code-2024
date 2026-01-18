@@ -1,5 +1,5 @@
 import unittest
-import day2 as subject
+import src.day2 as subject
 
 class testDay2(unittest.TestCase):
     def test_unsafe_report(self):

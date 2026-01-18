@@ -1,6 +1,6 @@
 import unittest
 import tempfile
-import day5 as subject
+import src.day5 as subject
 
 class testOrderingRule(unittest.TestCase):
     def test_check(self):

@@ -1,5 +1,5 @@
 import unittest
-import day4 as subject
+import src.day4 as subject
 
 class testDay4(unittest.TestCase):
     def test_count_XMAS_forward(self):
